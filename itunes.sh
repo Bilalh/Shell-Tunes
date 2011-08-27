@@ -5,7 +5,7 @@
 # no external dependencies 
 
 usage () {
-	echo "Usage: `basename $0` <option>";
+	echo "Usage: `basename "$0"` <option>";
 	echo
 	echo "Options: (short)";
 	echo " (s) status          : Shows iTunes' status, and track info";
