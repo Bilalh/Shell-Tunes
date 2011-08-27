@@ -1,6 +1,6 @@
 Shell Tunes {#readmeTitle}
 ===========
-
+Control itunes from the command line, over **40** commands inculding play/pause, mute/unmute, playlist and play random album. Also inculdes also scripts for getting data from itunes.
 {#description}
 
 Usage
