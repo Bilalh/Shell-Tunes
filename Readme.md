@@ -15,7 +15,7 @@ Prerequisites
 Install 
 -------
 * Put the scripts in your `$PATH`
-* alias for easy use e.g.  add `alias i='itunes.sh` to your .bashrc
+* alias for easy use e.g.  add `alias i='itunes.sh'` to your .bashrc
 
 Options
 -------
