@@ -1,3 +1,5 @@
+#!/usr/bin/env osascript
+-- Bilal Hussain 
 property randomAlbumName : "Some Random Album"
 
 tell application "iTunes"

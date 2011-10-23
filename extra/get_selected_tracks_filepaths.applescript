@@ -14,8 +14,7 @@ if okflag then
 			set selected_songs to ""
 			repeat with this_track in selection
 				if selected_songs is not equal to "" then
-					set selected_songs to selected_songs & "
-"
+					set selected_songs to selected_songs & "\n"
 				end if
 				try
 					set selected_songs to selected_songs & (quoted form of POSIX path of (get this_track's location))

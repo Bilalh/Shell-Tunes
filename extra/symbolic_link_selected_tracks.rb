@@ -4,7 +4,7 @@
 
 require 'escape'
 
-(puts "symbolic_link_selected_tracks.rb <dir>"; exit) if ARGV.length ==0
+(puts "#{File.basename $0} <dir>"; exit) if ARGV.length ==0
 
 dir = ARGV[0]
 paths = `get_selected_tracks_filepaths.applescript`.split(/\n/)
