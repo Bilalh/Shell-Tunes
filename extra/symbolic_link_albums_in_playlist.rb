@@ -16,6 +16,8 @@ albums.each do |album|
 	album.strip!
 	puts "Symbolic linking #{album} to #{dir}/#{album}"
 	tracks = `get_album_filepaths.applescript #{Escape.shell_command [album] }`.split("\n")
+	album.gsub!(/^\./, "dot ")
+	album.gsub!(/\//, "_")
 	next if tracks == "" 
 	`mkdir -p #{Escape.shell_command ["#{dir}/#{album}"] }`
 	tracks.each do |track|
