@@ -387,7 +387,7 @@ while [ $# -gt 0 ]; do
 			fi
 			break ;;
 			
-		"random" | 'rnd' | 'd' ) echo "Playing a random album";
+		"random" | "rnd" | "d" ) echo "Playing a random album";
 		osascript &> /dev/null <<-PPLESCRIPT
 			property randomAlbumName : "Some Random Album"
 

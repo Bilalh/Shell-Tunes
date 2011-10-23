@@ -39,7 +39,7 @@ end run
 
 # Sorts the list
 on mergeSort(theList)
-
+	
 	script bs
 		property alist : theList
 		
@@ -50,7 +50,7 @@ on mergeSort(theList)
 			set leftLength to length of theLeft
 			set rightLength to length of theRight
 			repeat while leftLength > 0 and rightLength > 0
-				if first item of theLeft ² first item of theRight then
+				if first item of theLeft ≤ first item of theRight then
 					set newList to newList & first item of theLeft
 					set theLeft to (rest of theLeft)
 				else
@@ -70,7 +70,7 @@ on mergeSort(theList)
 	set leftList to {}
 	set rightList to {}
 	set listLength to length of bs's alist
-	if listLength ² 1 then
+	if listLength ≤ 1 then
 		return bs's alist
 	else
 		set midList to listLength div 2
