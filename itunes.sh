@@ -48,6 +48,7 @@ usage () {
 	echo " (6) 4.5   {force}  : Set the current song rating to 4½ stars" ;
 	echo                      
 	echo " (t) stop           : Stop iTunes.";
+	echo "     commands       : Lists commands (for bash completion) "
 	echo " (q) quit           : Quit iTunes.";
 }
 
@@ -140,6 +141,34 @@ list_current_playlist_all(){
 	APPLESCRIPT
 }
 
+list_comands(){
+	echo "status"
+	echo "play"
+	echo "pause"
+	echo "playpause"
+	echo "next"
+	echo "prev"
+	echo "rewind"
+	echo "mute"
+	echo "unmute"
+	echo "vol"
+	echo "search"
+	echo "playlist"
+	echo "current"
+	echo "random"
+	echo "shuffle"
+	echo "repeat"
+	echo "4.5"
+	echo "1"
+	echo "2"
+	echo "3"
+	echo "4"
+	echo "5"
+	echo "4.5"
+	echo "stop"
+	echo "quit"
+}
+
 if [ $# = 0 ]; then
 	usage;
 fi
@@ -147,6 +176,11 @@ fi
 while [ $# -gt 0 ]; do
 	arg=$1;
 	case $arg in
+		"commands" )
+			list_comands
+			exit 0;
+			break;;
+		
 		"status" | "s" ) state;
 			break ;;
 		

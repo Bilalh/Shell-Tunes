@@ -64,6 +64,31 @@ Options
 	 (q) quit           : Quit iTunes.
 
 
+Bash Completion 
+--------------
+* Add this to your `.bash_profile` or `.bashrc`
+
+		function i(){
+			itunes.sh "$@"
+		}
+
+		function _ilist(){
+			itunes.sh commands
+		}
+
+		function _icomp(){
+			local curw
+			COMPREPLY=()
+			curw=${COMP_WORDS[COMP_CWORD]}
+			COMPREPLY=($(compgen -W '`_ilist`' -- $curw))
+			return 0
+		}
+
+		#  Completion for itunes.sh
+		shopt -s progcomp
+		complete -F _icomp i
+		
+
 Other
 -----
 * The extra folder contain extra scripts for controlling iTunes see the scripts for details.
