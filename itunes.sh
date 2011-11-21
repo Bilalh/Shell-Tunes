@@ -1,5 +1,6 @@
 #!/bin/bash
 # Bilal Hussain
+# https://github.com/Bilalh/Shell-Tunes
 
 # Controls Itunes from the command line
 # no external dependencies 
@@ -44,11 +45,11 @@ usage () {
 	echo " (e) repeat off      : Set repeat to off";
 	echo
 	echo
-	echo "     [0-5] {force}  : Set the current song rating" ;
-	echo " (6) 4.5   {force}  : Set the current song rating to 4½ stars" ;
+	echo "     [0-5]          : Set the current song rating" ;
+	echo " (6) 4.5            : Set the current song rating to 4½ stars" ;
 	echo                      
 	echo " (t) stop           : Stop iTunes.";
-	echo "     commands       : Lists commands (for bash completion) "
+	echo "     commands       : Lists commands (for bash completion) ";
 	echo " (q) quit           : Quit iTunes.";
 }
 
@@ -359,49 +360,31 @@ while [ $# -gt 0 ]; do
 			fi 
  		break ;;
 		
-		[0-5] ) echo "Set rating to $arg stars?"
+		[0-5] ) 
+			current=`osascript -e 'tell application "iTunes" to set current to the rating of current track as string'\
+			 -e 'set stars to current / 20 as integer'\
+			 -e 'set half to current mod 20 = 10'\
+			 -e 'if half then set stars to stars & "½"'\
+			 -e 'stars as string'`
+			echo "Changing rating from to $current to $arg stars";
+			osascript -e 'tell application "iTunes"' -e \
+				"set the rating of the current track to $((${arg}*20)) as integer"\
+			-e 'end tell';
 			current_song
-			RATE=0
-			
-			if [ $# -gt 1 ]; then
-				RATE=1
-			else
-				select ANS in "Yes" "No"; do
-					if [ "${ANS}" == "Yes" ]; then
-						RATE=1
-					fi;
-					break;
-				done;
-			fi
-			
-			if [ ${RATE} -eq 1 ]; then
-				osascript -e 'tell application "iTunes"' -e \
-					"set the rating of the current track to $((${arg}*20)) as integer"\
-				-e 'end tell';
-			fi
 			break ;;
 		
 		# bash does not do floating points calc
-		"4.5" | 6) echo "Set rating to 4½ stars?"
+		"4.5" | 6)
+		current=`osascript -e 'tell application "iTunes" to set current to the rating of current track as string'\
+		 -e 'set stars to current / 20 as integer'\
+		 -e 'set half to current mod 20 = 10'\
+		 -e 'if half then set stars to stars & "½"'\
+		 -e 'stars as string'`
+		echo "Changing rating from to $current to 4½ stars";
+		osascript -e 'tell application "iTunes"' -e \
+			"set the rating of the current track to 90 as integer"\
+		-e 'end tell';
 		current_song
-		RATE=0
-		
-		if [ $# -gt 1 ]; then
-			RATE=1
-		else
-			select ANS in "Yes" "No"; do
-				if [ "${ANS}" == "Yes" ]; then
-					RATE=1
-				fi;
-				break;
-			done;
-		fi
-		
-		if [ ${RATE} -eq 1 ]; then
-			osascript -e 'tell application "iTunes"' -e \
-				"set the rating of the current track to 90 as integer"\
-			-e 'end tell';
-		fi
 		break ;;
 	
 		"quit" | "q" ) echo "Quitting iTunes.";

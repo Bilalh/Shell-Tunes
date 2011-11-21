@@ -57,8 +57,8 @@ Options
 	 (e) repeat off      : Set repeat to off
 
 
-	     [0-5] {force}  : Set the current song rating
-	 (6) 4.5   {force}  : Set the current song rating to 4½ stars
+	     [0-5]          : Set the current song rating
+	 (6) 4.5            : Set the current song rating to 4½ stars
 
 	 (t) stop           : Stop iTunes.
 	 (q) quit           : Quit iTunes.
